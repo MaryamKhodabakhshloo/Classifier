@@ -119,7 +119,15 @@ class Game:
             self.screen.fill((150, 150, 150))
             pygame.draw.rect(self.screen,(255, 255, 255) , [50, 0, 13, 970])
             pygame.draw.rect(self.screen,(255, 255, 255) , [585, 0, 13, 970])
-            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 0, 13, 970])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 0, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 80, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 160, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 240, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 320, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 400, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 480, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 560, 13, 50])
+            pygame.draw.rect(self.screen,(255, 255, 255) , [320, 640, 13, 50])
             rotated  = pygame.transform.rotate(car_image, car.angle)
             rotated1 = car_image1 
             rotated2 = car_image2
