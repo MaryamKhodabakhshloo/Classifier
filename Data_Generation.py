@@ -45,7 +45,7 @@ class O_Car:
         self.position += np.array(self.velocity) * dt
 
 ################################################################################
-class Game:
+class Start:
     def __init__(self):
         pygame.init()
         width = 500
@@ -86,12 +86,12 @@ class Game:
                 if car.velocity.x < 0:
                     car.acceleration = car.brake_deceleration
                 else:
-                    car.acceleration += 10 * dt
+                    car.acceleration += 5 * dt
             elif pressed[pygame.K_DOWN]:
                 if car.velocity.x > 0:
-                    car.acceleration = -10*car.brake_deceleration
+                    car.acceleration = -5*car.brake_deceleration
                 else:
-                    car.acceleration -= 10 * dt
+                    car.acceleration -= 5 * dt
             else:
                 if abs(car.velocity.x) > dt * car.free_deceleration:
                     car.acceleration = -copysign(car.free_deceleration, car.velocity.x)
@@ -110,9 +110,9 @@ class Game:
 
             # Logic
             car.update(dt)
-            car1.update(dt)
-            car2.update(dt)
-            car3.update(dt)
+            car1.update(-.4*dt)
+            car2.update(-.1*dt)
+            car3.update(-.05*dt)
 
             bias = 10
 
@@ -135,7 +135,7 @@ class Game:
             
             for p in lane_positions:
                 p_disp = p
-                p_disp[1] -= car.position[1]
+                p_disp[1] += car.position[1]
                 pygame.draw.rect(self.screen,(255, 255, 255), p_disp)
             
 
@@ -160,5 +160,5 @@ class Game:
 
 ################################################################################
 if __name__ == '__main__':
-    game = Game()
+    game = Start()
     game.run()
