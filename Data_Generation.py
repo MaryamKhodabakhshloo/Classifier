@@ -13,9 +13,9 @@ class EGO_Car:
         self.length = length
         self.max_acceleration = max_acceleration
         self.max_steering = max_steering
-        self.max_velocity = 100
+        self.max_velocity = 10
         self.brake_deceleration = 10
-        self.free_deceleration = 2
+        self.free_deceleration = 1
         self.acceleration = 0.0
         self.steering = 0.0
 
@@ -30,7 +30,11 @@ class EGO_Car:
             angular_velocity = 0
 
         self.position += self.velocity.rotate(-self.angle) * dt
-        print(self.position)
+        outFile = open('/home/m/Desktop/file','a')
+        outFile.write(str(self.position[0]))
+        outFile.write(",")  
+        outFile.write(str(self.position[1]))
+        outFile.write("\n") 
         self.angle += degrees(angular_velocity) * dt
 ################################################################################
 class O_Car:
@@ -52,7 +56,7 @@ class Start:
         height = 1000
         self.screen = pygame.display.set_mode((width, height))
         self.clock = pygame.time.Clock()
-        self.ticks = 60
+        self.ticks = 25
         self.exit = False
 
     def run(self):
@@ -76,22 +80,22 @@ class Start:
             
             # Event queue
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                pressed = pygame.key.get_pressed()
+                if event.type == pygame.QUIT or pressed[pygame.K_ESCAPE] :
                     self.exit = True
-
             # User input
-            pressed = pygame.key.get_pressed()
+            
 
             if pressed[pygame.K_UP]:
                 if car.velocity.x < 0:
                     car.acceleration = car.brake_deceleration
                 else:
-                    car.acceleration += 5 * dt
+                    car.acceleration += 1 * dt
             elif pressed[pygame.K_DOWN]:
                 if car.velocity.x > 0:
-                    car.acceleration = -5*car.brake_deceleration
+                    car.acceleration = -1*car.brake_deceleration
                 else:
-                    car.acceleration -= 5 * dt
+                    car.acceleration -= 1 * dt
             else:
                 if abs(car.velocity.x) > dt * car.free_deceleration:
                     car.acceleration = -copysign(car.free_deceleration, car.velocity.x)
